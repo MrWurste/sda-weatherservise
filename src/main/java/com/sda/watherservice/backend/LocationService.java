@@ -4,13 +4,15 @@ public class LocationService {
 
     private LocationRepository locationRepository = new LocationRepository();
 
-    public void Validate(String name, String latitude, String longitude, String country, String region) throws IllegalArgumentException{
+    public Location addNewLocation(String name, String latitude, String longitude, String country, String region) throws IllegalArgumentException{
         float flatitude = 0f;
         float flongitude = 0f;
 
         if (name == null || country == null) {
             throw new IllegalArgumentException("Nazwa miasta i państwo nie mogą być puste");
         }
+
+        // todo flatitude = Float.parseFloat(latitude);
         if (latitude.matches("-?[0-9]{1,2}[.,]?[0-9]{0,4}")) {
             latitude.replace('.', ',');
             if (flatitude < -90 || flatitude > 90) {
@@ -29,6 +31,7 @@ public class LocationService {
         }
 
         Location location = new Location(name, flatitude, flongitude, country, region);
-        locationRepository.saveNewLocationNoRegion(location);
+
+        return locationRepository.saveNewLocationNoRegion(location);
     }
 }
