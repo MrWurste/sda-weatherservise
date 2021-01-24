@@ -2,9 +2,9 @@ package com.sda.frontend;
 
 import com.sda.utils.AppUtils;
 
-public class UI_Impl implements UI {
+public class UI_Impl implements UI { // todo change a name to UserInterface
 
-    AppUtils appUtils = new AppUtils();
+    AppUtils appUtils = new AppUtils(); // todo change to the Scanner class
 
     @Override
     public void showWelcomeMessage() {
@@ -15,7 +15,7 @@ public class UI_Impl implements UI {
             System.out.println("3. Pobież dane pogodowe");
             System.out.println("4. Zakończ pracę z aplikacją");
 
-            int responce = appUtils.getInteger();
+            int responce = appUtils.getInteger(); // todo response
 
             switch (responce) {
                 case 1:
@@ -34,7 +34,7 @@ public class UI_Impl implements UI {
     }
 
     @Override
-    public void addNewLocation() {
+    public void addNewLocation() { // todo make private
         System.out.println("Podaj nazwę miasta: ");
         String name = appUtils.getString();
         System.out.println("Podaj szerokość geograficzną:");
@@ -44,7 +44,7 @@ public class UI_Impl implements UI {
         System.out.println("Podaj nazwę kraju:");
         String country = appUtils.getString();
         System.out.println("Jeśli chcesz dodać region wpisz 1.\nJeśli chcesz dodać lokację bez regionu wpisz 2.");
-        int responce = appUtils.getInteger();
+        int responce = appUtils.getInteger(); // todo response
         switch (responce) {
             case 1:
                 System.out.println("Podaj nazwę regionu:");
@@ -59,13 +59,13 @@ public class UI_Impl implements UI {
     }
 
     @Override
-    public void showAddedLocations() {
+    public void showAddedLocations() { // todo make private
         System.out.println("Wczytywanie dodanych lokacji");
         //todo
     }
 
     @Override
-    public void downloadWeatherData() {
+    public void downloadWeatherData() { // todo make private
         System.out.println("Pobieranie danych pogodowych");
         //todo
     }
