@@ -1,5 +1,7 @@
 package com.sda.watherservice.frontend;
 
+import com.sda.watherservice.backend.LocationController;
+
 import java.util.Scanner;
 
 public class UserInterface {
@@ -32,6 +34,8 @@ public class UserInterface {
         }
     }
 
+        private LocationController locationService = new LocationController();
+
     private void addNewLocation() {
         System.out.println("Podaj nazwę miasta: ");
         String name = scanner.next();
@@ -51,6 +55,7 @@ public class UserInterface {
                 break;
             case 2:
                 System.out.println("Dodawanie lokacji");
+                locationService.LocationValidation(name, latitude, longitude, country);
                 //todo implementation
                 break;
         }
