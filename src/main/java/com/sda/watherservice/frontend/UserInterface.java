@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class UserInterface {
 
     private Scanner scanner = new Scanner(System.in);
+    private LocationController locationController = new LocationController();
 
     public void showWelcomeMessage() {
         while (true) {
@@ -34,9 +35,8 @@ public class UserInterface {
         }
     }
 
-        private LocationController locationService = new LocationController();
-
     private void addNewLocation() {
+        String newLocation = "";
         System.out.println("Podaj nazwę miasta: ");
         String name = scanner.next();
         System.out.println("Podaj szerokość geograficzną:");
@@ -52,13 +52,14 @@ public class UserInterface {
                 System.out.println("Podaj nazwę regionu:");
                 String region = scanner.next();
                 System.out.println("Dodawanie lokacji");
+                newLocation = locationController.addNewLocation(name, latitude, longitude, country, region);
                 break;
             case 2:
                 System.out.println("Dodawanie lokacji");
-                locationService.LocationValidation(name, latitude, longitude, country);
-                //todo implementation
+                newLocation = locationController.addNewLocation(name, latitude, longitude, country, null);
                 break;
         }
+        System.out.println("Lokacja została dodana: " + newLocation);
     }
 
     private void showAddedLocations() {
