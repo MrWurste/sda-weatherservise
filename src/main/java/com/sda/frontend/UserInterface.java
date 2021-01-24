@@ -1,12 +1,11 @@
 package com.sda.frontend;
 
-import com.sda.utils.AppUtils;
+import java.util.Scanner;
 
-public class UI_Impl implements UI { // todo change a name to UserInterface
+public class UserInterface {
 
-    AppUtils appUtils = new AppUtils(); // todo change to the Scanner class
+    private Scanner scanner = new Scanner(System.in);
 
-    @Override
     public void showWelcomeMessage() {
         while (true) {
             System.out.println("Witaj w prostej aplikacji pogodowej! Co chciał(a)byś zrobić?");
@@ -15,9 +14,9 @@ public class UI_Impl implements UI { // todo change a name to UserInterface
             System.out.println("3. Pobież dane pogodowe");
             System.out.println("4. Zakończ pracę z aplikacją");
 
-            int responce = appUtils.getInteger(); // todo response
+            int response = scanner.nextInt();
 
-            switch (responce) {
+            switch (response) {
                 case 1:
                     addNewLocation();
                     break;
@@ -33,40 +32,37 @@ public class UI_Impl implements UI { // todo change a name to UserInterface
         }
     }
 
-    @Override
-    public void addNewLocation() { // todo make private
+    private void addNewLocation() {
         System.out.println("Podaj nazwę miasta: ");
-        String name = appUtils.getString();
+        String name = scanner.next();
         System.out.println("Podaj szerokość geograficzną:");
-        String latitude = appUtils.getString();
+        String latitude = scanner.next();
         System.out.println("Podaj długość goograficzną:");
-        String longitude = appUtils.getString();
+        String longitude = scanner.next();
         System.out.println("Podaj nazwę kraju:");
-        String country = appUtils.getString();
+        String country = scanner.next();
         System.out.println("Jeśli chcesz dodać region wpisz 1.\nJeśli chcesz dodać lokację bez regionu wpisz 2.");
-        int responce = appUtils.getInteger(); // todo response
-        switch (responce) {
+        int response = scanner.nextInt();
+        switch (response) {
             case 1:
                 System.out.println("Podaj nazwę regionu:");
-                String region = appUtils.getString();
+                String region = scanner.next();
                 System.out.println("Dodawanie lokacji");
                 break;
             case 2:
                 System.out.println("Dodawanie lokacji");
-                //todo
+                //todo implementation
                 break;
         }
     }
 
-    @Override
-    public void showAddedLocations() { // todo make private
+    private void showAddedLocations() {
         System.out.println("Wczytywanie dodanych lokacji");
-        //todo
+        //todo implementation
     }
 
-    @Override
-    public void downloadWeatherData() { // todo make private
+    private void downloadWeatherData() {
         System.out.println("Pobieranie danych pogodowych");
-        //todo
+        //todo implementation
     }
 }
