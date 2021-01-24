@@ -59,7 +59,7 @@ public class UserInterface {
                 newLocation = locationController.addNewLocation(name, latitude, longitude, country, null);
                 break;
         }
-        System.out.println("Lokacja została dodana: " + newLocation);
+        System.out.println(newLocation);
     }
 
     private void showAddedLocations() {
