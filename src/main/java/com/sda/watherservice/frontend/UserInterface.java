@@ -1,4 +1,4 @@
-package com.sda.frontend;
+package com.sda.watherservice.frontend;
 
 import java.util.Scanner;
 
