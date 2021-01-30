@@ -65,6 +65,11 @@ public class UserInterface {
     private void showAddedLocations() {
         System.out.println("Wczytywanie dodanych lokacji");
         //todo implementation
+        String locations = locationController.getLocations();
+        locations = locations
+                .replaceAll("\\{","\n\\{")
+                .replaceAll("}]","}\n]");
+        System.out.println("Zapisane lokacje: "+locations);
     }
 
     private void downloadWeatherData() {

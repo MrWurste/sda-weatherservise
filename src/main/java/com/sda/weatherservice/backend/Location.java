@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Optional;
 
 @Entity
 @RequiredArgsConstructor
@@ -12,16 +13,16 @@ public class Location {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
     @Column (nullable = false)
-    String name;
+    private String name;
     @Column (nullable = false)
-    String country;
+    private String country;
     @Column (nullable = false)
-    float latitude;
+    private float latitude;
     @Column (nullable = false)
-    float longitude;
-    String region;
+    private float longitude;
+    private String region;
 
     public Location(String name, String country, float latitude, float longitude, String region) {
         this.name = name;
@@ -29,5 +30,9 @@ public class Location {
         this.latitude = latitude;
         this.longitude = longitude;
         this.region = region;
+    }
+
+    Optional<String> getRegion() {
+        return Optional.ofNullable(region);
     }
 }

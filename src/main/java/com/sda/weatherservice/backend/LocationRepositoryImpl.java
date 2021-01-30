@@ -28,7 +28,7 @@ public class LocationRepositoryImpl implements LocationRepository {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
 
-        List<Location> locations = session.createQuery("FROM location").getResultList();
+        List<Location> locations = session.createQuery("FROM Location").getResultList();
 
         transaction.commit();
         session.close();
