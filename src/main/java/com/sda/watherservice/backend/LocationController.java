@@ -1,5 +1,7 @@
 package com.sda.watherservice.backend;
 
+import java.util.Optional;
+
 public class LocationController {
 
     private LocationRepositoryImpl locationRepositoryImpl = new LocationRepositoryImpl();
@@ -8,28 +10,18 @@ public class LocationController {
 
     public String addNewLocation(String name, String latitude, String longitude, String country, String region) {
         try {
-            if (region==null) {
-                location = locationService.addNewLocation(
-                        name.toLowerCase(),
-                        latitude,
-                        longitude,
-                        country.toLowerCase(),
-                        region);
-            } else {
-                location = locationService.addNewLocation(
-                        name.toLowerCase(),
-                        latitude,
-                        longitude,
-                        country.toLowerCase(),
-                        region.toLowerCase());
-            }
+            name = name.toLowerCase();
+            country = country.toLowerCase();
+            region = Optional.ofNullable(region).map(String::toLowerCase).orElse(null);
+            location = locationService.addNewLocation(name, latitude, longitude, country, region);
         } catch (IllegalArgumentException e) {
-            return ("Błąd dodawnia lokacji :" + e.getMessage());
+            return "Błąd dodawnia lokacji :" + e.getMessage();
         }
+
         return String.format("Lokacja dodana prawidłowo: [nazwa: %s, szerokość: %s, długość: %s, kraj: %s, region: %s",
                 location.getName(),
                 location.getLatitude(),
-                location.getLongtitude(),
+                location.getLongitude(),
                 location.getCountry(),
                 location.getRegion());
     }

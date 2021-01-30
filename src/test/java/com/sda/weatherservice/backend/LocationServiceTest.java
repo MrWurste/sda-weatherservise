@@ -27,6 +27,25 @@ public class LocationServiceTest {
 
         // then
         assertThat(location).isNotNull();
+        assertThat(location.getName()).isEqualTo("Gdansk");
+        assertThat(location.getRegion()).isEqualTo("Pomorskie");
+        assertThat(location.getCountry()).isEqualTo("Polska");
+        assertThat(location.getLongitude()).isEqualTo(50.0f);
+        assertThat(location.getLatitude()).isEqualTo(40.0f);
+    }
+
+    @Test
+    void addNewLocation_whenRegionIsNull_createNewLocation() {
+        // when
+        Location location = locationService.addNewLocation("Gdansk", "40", "50", "Polska", null);
+
+        // then
+        assertThat(location).isNotNull();
+        assertThat(location.getName()).isEqualTo("Gdansk");
+        assertThat(location.getRegion()).isNull();
+        assertThat(location.getCountry()).isEqualTo("Polska");
+        assertThat(location.getLongitude()).isEqualTo(50.0f);
+        assertThat(location.getLatitude()).isEqualTo(40.0f);
     }
 
     @Test
