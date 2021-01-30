@@ -1,9 +1,10 @@
-package com.sda.watherservice.backend;
+package com.sda.weatherservice.backend;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Optional;
 
 @Entity
 @RequiredArgsConstructor
@@ -12,22 +13,26 @@ public class Location {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
     @Column (nullable = false)
-    String name;
+    private String name;
     @Column (nullable = false)
-    float latitude;
+    private String country;
     @Column (nullable = false)
-    float longitude;
+    private float latitude;
     @Column (nullable = false)
-    String country;
-    String region;
+    private float longitude;
+    private String region;
 
-    public Location(String name, float latitude, float longitude, String country, String region) {
+    public Location(String name, String country, float latitude, float longitude, String region) {
         this.name = name;
+        this.country = country;
         this.latitude = latitude;
         this.longitude = longitude;
-        this.country = country;
         this.region = region;
+    }
+
+    Optional<String> getRegion() {
+        return Optional.ofNullable(region);
     }
 }

@@ -1,6 +1,6 @@
-package com.sda.watherservice.frontend;
+package com.sda.weatherservice.frontend;
 
-import com.sda.watherservice.backend.LocationController;
+import com.sda.weatherservice.backend.LocationController;
 
 import java.util.Scanner;
 
@@ -39,12 +39,12 @@ public class UserInterface {
         String newLocation = "";
         System.out.println("Podaj nazwę miasta: ");
         String name = scanner.next();
+        System.out.println("Podaj nazwę kraju:");
+        String country = scanner.next();
         System.out.println("Podaj szerokość geograficzną:");
         String latitude = scanner.next();
         System.out.println("Podaj długość goograficzną:");
         String longitude = scanner.next();
-        System.out.println("Podaj nazwę kraju:");
-        String country = scanner.next();
         System.out.println("Jeśli chcesz dodać region wpisz 1.\nJeśli chcesz dodać lokację bez regionu wpisz 2.");
         int response = scanner.nextInt();
         switch (response) {
@@ -65,6 +65,11 @@ public class UserInterface {
     private void showAddedLocations() {
         System.out.println("Wczytywanie dodanych lokacji");
         //todo implementation
+        String locations = locationController.getLocations();
+        locations = locations
+                .replaceAll("\\{","\n\\{")
+                .replaceAll("}]","}\n]");
+        System.out.println("Zapisane lokacje: "+locations);
     }
 
     private void downloadWeatherData() {
