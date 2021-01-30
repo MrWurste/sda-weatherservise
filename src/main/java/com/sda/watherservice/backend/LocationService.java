@@ -2,7 +2,10 @@ package com.sda.watherservice.backend;
 
 public class LocationService {
 
-    private LocationRepository locationRepository = new LocationRepository();
+    LocationRepository repo;
+    LocationService (LocationRepository repository) {
+        this.repo = repository;
+    }
 
     public Location addNewLocation(String name, String latitude, String longitude, String country, String region) throws IllegalArgumentException{
         float flatitude = 0f;
@@ -32,6 +35,6 @@ public class LocationService {
 
         Location location = new Location(name, flatitude, flongitude, country, region);
 
-        return locationRepository.saveNewLocationNoRegion(location);
+        return locationRepositoryImpl.saveNewLocation(location);
     }
 }

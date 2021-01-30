@@ -2,8 +2,8 @@ package com.sda.watherservice.backend;
 
 public class LocationController {
 
-    private LocationRepository locationRepository = new LocationRepository();
-    LocationService locationService = new LocationService();
+    private LocationRepositoryImpl locationRepositoryImpl = new LocationRepositoryImpl();
+    LocationService locationService = new LocationService(locationRepositoryImpl);
 
     public String addNewLocation(String name, String latitude, String longitude, String country, String region) {
         try {

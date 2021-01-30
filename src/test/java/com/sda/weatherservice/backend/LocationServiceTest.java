@@ -1,6 +1,8 @@
 package com.sda.weatherservice.backend;
 
 import com.sda.watherservice.backend.Location;
+import com.sda.watherservice.backend.LocationRepository;
+import com.sda.watherservice.backend.LocationRepositoryMock;
 import com.sda.watherservice.backend.LocationService;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -14,7 +16,8 @@ public class LocationServiceTest {
 
     @BeforeAll
     static void setUp() {
-        locationService = new LocationService();
+        LocationRepository repository = new LocationRepositoryMock();
+        locationService = new LocationService(repository);
     }
 
     @Test
