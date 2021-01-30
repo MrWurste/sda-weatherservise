@@ -3,7 +3,7 @@ package com.sda.watherservice.backend;
 public class LocationService {
 
     LocationRepository repo;
-    LocationService (LocationRepository repository) {
+    public LocationService (LocationRepository repository) {
         this.repo = repository;
     }
 
@@ -35,6 +35,6 @@ public class LocationService {
 
         Location location = new Location(name, flatitude, flongitude, country, region);
 
-        return locationRepositoryImpl.saveNewLocation(location);
+        return repo.saveNewLocation(location);
     }
 }
