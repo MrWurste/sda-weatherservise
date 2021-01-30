@@ -15,7 +15,6 @@ public class LocationService {
             throw new IllegalArgumentException("Nazwa miasta i państwo nie mogą być puste");
         }
 
-        // todo flatitude = Float.parseFloat(latitude);
         if (latitude.matches("-?[0-9]{1,2}[.,]?[0-9]{0,4}")) {
             flatitude = Float.parseFloat(latitude.replace(',', '.'));
             if (flatitude < -90 || flatitude > 90) {
