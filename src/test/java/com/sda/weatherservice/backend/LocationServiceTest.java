@@ -61,4 +61,22 @@ public class LocationServiceTest {
         // then
         assertThat(throwable).isInstanceOf(RuntimeException.class);
     }
+
+    @Test
+    void addNewLocation_whenLongitudeIsMoreThan180_throwsException() {
+        // when
+        Throwable throwable = catchThrowable(() -> locationService.addNewLocation("Warszawa", "50", "181", "Polska", "Pomorskie"));
+
+        // then
+        assertThat(throwable).isInstanceOf(RuntimeException.class);
+    }
+
+    @Test
+    void addNewLocation_whenLongitudeIsLessThan180Negative_throwsException() {
+        // when
+        Throwable throwable = catchThrowable(() -> locationService.addNewLocation("Warszawa", "50", "-181", "Polska", "Pomorskie"));
+
+        // then
+        assertThat(throwable).isInstanceOf(RuntimeException.class);
+    }
 }
