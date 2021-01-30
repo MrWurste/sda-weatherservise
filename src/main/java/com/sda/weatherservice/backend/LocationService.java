@@ -1,4 +1,4 @@
-package com.sda.watherservice.backend;
+package com.sda.weatherservice.backend;
 
 public class LocationService {
 
@@ -32,7 +32,7 @@ public class LocationService {
             throw new IllegalArgumentException("Niezgodny format zapisu dłogości gograficznej\nOczekiwane 00,0000 lub 00.0000, było : " + longitude);
         }
 
-        Location location = new Location(name, flatitude, flongitude, country, region);
+        Location location = new Location(name, country, flatitude, flongitude, region);
 
         return repo.saveNewLocation(location);
     }

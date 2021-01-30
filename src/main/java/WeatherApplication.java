@@ -1,4 +1,4 @@
-import com.sda.watherservice.frontend.UserInterface;
+import com.sda.weatherservice.frontend.UserInterface;
 
 public class WeatherApplication {
     public static void main(String[] args) {

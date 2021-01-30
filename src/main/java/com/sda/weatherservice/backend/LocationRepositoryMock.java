@@ -1,6 +1,7 @@
-package com.sda.watherservice.backend;
+package com.sda.weatherservice.backend;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class LocationRepositoryMock implements LocationRepository{
@@ -9,5 +10,10 @@ public class LocationRepositoryMock implements LocationRepository{
     public Location saveNewLocation(Location location) {
         locations.add(location);
         return location;
+    }
+
+    @Override
+    public List<Location> findAllLocations() {
+        return Collections.unmodifiableList(locations);
     }
 }

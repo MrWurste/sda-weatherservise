@@ -1,4 +1,4 @@
-package com.sda.watherservice.backend;
+package com.sda.weatherservice.backend;
 
 import java.util.Optional;
 

@@ -1,25 +1,25 @@
 package com.sda.weatherservice.backend;
 
-import com.sda.watherservice.backend.Location;
-import com.sda.watherservice.backend.LocationRepository;
-import com.sda.watherservice.backend.LocationRepositoryMock;
-import com.sda.watherservice.backend.LocationService;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
 
 public class LocationServiceTest {
 
+    private static LocationRepository repository;
     private static LocationService locationService;
 
     @BeforeAll
     static void setUp() {
-        LocationRepository repository = new LocationRepositoryMock();
+        repository = new LocationRepositoryMock();
         locationService = new LocationService(repository);
     }
 
+    //region addLocationTests
     @Test
     void addNewLocation_createNewLocation() {
         // when
@@ -101,4 +101,19 @@ public class LocationServiceTest {
         // then
         assertThat(throwable).isInstanceOf(RuntimeException.class);
     }
+    //endregion
+
+    //region showLocationsTests
+    @Test
+    void showNewlyAddedLocation () {
+        //given
+        repository.saveNewLocation(new Location("Miejscowość1", "Kraj", 45, 90, "Region"));
+        repository.saveNewLocation(new Location("Miejscowość2", "Kraj", 45, 90, "Region"));
+
+        //when
+        List<Location> results = repository.findAllLocations();
+        //then
+        assertThat(results).hasSize(2);
+    }
+    //endregion
 }

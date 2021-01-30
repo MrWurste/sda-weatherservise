@@ -1,8 +1,11 @@
-package com.sda.watherservice.backend;
+package com.sda.weatherservice.backend;
 
+import com.sda.weatherservice.HibernateUtils;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+
+import java.util.List;
 
 public class LocationRepositoryImpl implements LocationRepository {
 
@@ -17,5 +20,18 @@ public class LocationRepositoryImpl implements LocationRepository {
         transaction.commit();
         session.close();
         return location;
+    }
+
+    @Override
+    public List<Location> findAllLocations() {
+        SessionFactory sessionFactory = HibernateUtils.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+
+        List<Location> locations = session.createQuery("FROM location").getResultList();
+
+        transaction.commit();
+        session.close();
+        return locations;
     }
 }
