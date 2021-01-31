@@ -77,9 +77,10 @@ public class UserInterface {
         System.out.println("Pobieranie danych pogodowych");
         String locNames = locationController.getLocations();
         String weatherDatas = weatherController.getWeatherDatas();
-        weatherDatas = weatherDatas
-                .replaceAll("\\{", "\n\\{")
-                .replaceAll("}]", "}\n]");
+        //weatherDatas = weatherDatas
+                //.replaceAll("\\{", "\n\\{")
+                //.replaceAll("}]", "}\n]");
+                //.replaceAll(",", "");
         System.out.println("Dane pogodowe: " + weatherDatas);
     }
 }

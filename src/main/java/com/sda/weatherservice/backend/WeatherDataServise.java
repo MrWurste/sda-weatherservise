@@ -23,14 +23,15 @@ public class WeatherDataServise {
     static List<WeatherData> weatherDatas = new ArrayList<>();
 
     public void doEverythinkCouseIDontKnowWhatImDoing() {
-        List<String> gLFN = getLocationsNames();
+        List<String> gLFN = getAllLocationsNames();
         for (int i = 0; i < gLFN.size(); i++) {
             doSomething(gLFN.get(i));
         }
         saveAllWeatherData(weatherDatas);
+        weatherDatas.clear();
     }
 
-    public List<String> getLocationsNames() {
+    public List<String> getAllLocationsNames() {
         return repo.findAllLocationsNames();
     }
 

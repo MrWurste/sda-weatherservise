@@ -8,6 +8,7 @@ public class WeatherDataMapper {
         weatherDataDTO.setHumidity(weatherData.getHumidity());
         weatherDataDTO.setWind_speed(weatherData.getWind_speed());
         weatherDataDTO.setWind_degree(weatherData.getWind_degree());
+        weatherDataDTO.setCelsius(weatherData.getTemperature()-273.15);
 
         return weatherDataDTO;
     }

@@ -14,7 +14,6 @@ public class WeatherDataController {
     private final WeatherDataServise weatherDataServise = new WeatherDataServise(weatherDataRepository);
     private final ObjectMapper objectMapper = new ObjectMapper();
 
-//todo remove mock list
     List<WeatherData> weatherDatas = new ArrayList<>();
     public void saveAllWeatherData (List<WeatherData> list) {
         weatherDataServise.saveAllWeatherData(list);
@@ -26,10 +25,11 @@ public class WeatherDataController {
                 .map(weatherDataMapper::asWeatherDataDTO)
                 .collect(Collectors.toList());
 
-        try {
-            return objectMapper.writeValueAsString(weatherDataDTOS);
-        } catch (JsonProcessingException e) {
-            return "Niepowodzenie w pozyskaniu danych pogodowych: "+e.getMessage();
-        }
+        //try {
+            //return objectMapper.writeValueAsString(weatherDataDTOS);
+            return weatherDataDTOS.toString();
+        //} catch (JsonProcessingException e) {
+         //   return "Niepowodzenie w pozyskaniu danych pogodowych: "+e.getMessage();
+        //}
     }
 }
