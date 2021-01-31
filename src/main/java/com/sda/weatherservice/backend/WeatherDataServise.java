@@ -15,18 +15,14 @@ import java.util.*;
 public class WeatherDataServise {
     static ObjectMapper mapper = new ObjectMapper();
     WeatherDataRepository repo;
+    static List<WeatherData> weatherDatas = new ArrayList<>();
 
     public WeatherDataServise(WeatherDataRepository repository) {
         this.repo = repository;
     }
 
-    static List<WeatherData> weatherDatas = new ArrayList<>();
-
-    public void doEverythinkCouseIDontKnowWhatImDoing() {
-        List<String> gLFN = getAllLocationsNames();
-        for (int i = 0; i < gLFN.size(); i++) {
-            doSomething(gLFN.get(i));
-        }
+    public void manageGettingJSONAndSavingDataToDatabase() {
+        createWeatherDataForEveryLocation(getAllLocationsNames());
         saveAllWeatherData(weatherDatas);
         weatherDatas.clear();
     }
@@ -35,19 +31,17 @@ public class WeatherDataServise {
         return repo.findAllLocationsNames();
     }
 
-    public void doSomething(String name) {
-        try {
-            remapCurrentWeatherData(buildURILink(name, "c22273871df9b8f551e3bf3ef88443ca"));
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
+    public void createWeatherDataForEveryLocation (List<String> gALFN) {
+        for (int i = 0; i < gALFN.size(); i++) {
+            try {
+                translateJSONtoEntity(buildURLLink(gALFN.get(i), "c22273871df9b8f551e3bf3ef88443ca"));
+            } catch (JsonProcessingException e) {
+                e.printStackTrace();
+            }
         }
     }
 
-    static WeatherData makeEntityFromClasses(Main main, Wind wind) {
-        return new WeatherData(main.temp, main.pressure, main.humidity, wind.speed, wind.deg);
-    }
-
-    static URL buildURILink(String name, String apiid) {
+    static URL buildURLLink(String name, String apiid) {
         StringBuilder urisb = new StringBuilder();
         urisb.append("http://api.openweathermap.org/data/2.5/weather");
         urisb.append("?q=");
@@ -63,7 +57,7 @@ public class WeatherDataServise {
         return null;
     }
 
-    static void remapCurrentWeatherData(URL jsonLink) throws JsonProcessingException {
+    static void translateJSONtoEntity(URL jsonLink) throws JsonProcessingException {
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         CurrentWeatherModel weather = null;
         try {
@@ -74,6 +68,10 @@ public class WeatherDataServise {
         weatherDatas.add(makeEntityFromClasses(weather.main, weather.wind));
     }
 
+    static WeatherData makeEntityFromClasses(Main main, Wind wind) {
+        return new WeatherData(main.temp, main.pressure, main.humidity, wind.speed, wind.deg);
+    }
+
     public List<WeatherData> saveAllWeatherData(List<WeatherData> list) {
 
         return repo.saveNewData(list);
@@ -81,6 +79,6 @@ public class WeatherDataServise {
 
     public List<WeatherData> getWeatherData() {
 
-        return repo.findAllWhetherData();
+        return repo.findAllWeatherData();
     }
 }

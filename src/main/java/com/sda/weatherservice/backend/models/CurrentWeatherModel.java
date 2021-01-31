@@ -6,9 +6,4 @@ import com.sda.weatherservice.backend.models.currentweather.Wind;
 public class CurrentWeatherModel {
     public Main main;
     public Wind wind;
-
-    @Override
-    public String toString() {
-        return "Dane pogodowe: "+main+wind;
-    }
 }

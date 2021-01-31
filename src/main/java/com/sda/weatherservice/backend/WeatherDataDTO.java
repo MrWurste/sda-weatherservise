@@ -16,6 +16,7 @@ public class WeatherDataDTO {
 
     @Override
     public String toString() {
+        //todo after replaceall unnecesery stuff celsius value goes craaaazy down, repair it
         NumberFormat nf = NumberFormat.getInstance();
         nf.setMaximumFractionDigits(4);
         return "\ntemeratura: " + temperature + " K, " + nf.format(celsius) + "° C" +

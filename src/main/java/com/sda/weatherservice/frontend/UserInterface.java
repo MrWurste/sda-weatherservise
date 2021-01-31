@@ -75,8 +75,8 @@ public class UserInterface {
 
     private void downloadWeatherData() {
         System.out.println("Pobieranie danych pogodowych");
-        String locNames = locationController.getLocations();
         String weatherDatas = weatherController.getWeatherDatas();
+        //todo repair it, more info in WeatherDataDTO couse propably there is a problem
         //weatherDatas = weatherDatas
                 //.replaceAll("\\{", "\n\\{")
                 //.replaceAll("}]", "}\n]");

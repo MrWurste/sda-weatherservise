@@ -37,7 +37,7 @@ public class WeatherDataRepositoryImpl implements WeatherDataRepository {
     }
 
     @Override
-    public List<WeatherData> findAllWhetherData() {
+    public List<WeatherData> findAllWeatherData() {
         SessionFactory sessionFactory = HibernateUtils.getSessionFactory();
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();

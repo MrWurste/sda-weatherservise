@@ -5,5 +5,5 @@ import java.util.List;
 public interface WeatherDataRepository {
     List<String> findAllLocationsNames();
     List<WeatherData> saveNewData(List<WeatherData> weatherDataList);
-    List<WeatherData> findAllWhetherData();
+    List<WeatherData> findAllWeatherData();
 }
