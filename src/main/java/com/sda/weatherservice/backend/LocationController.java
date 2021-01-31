@@ -9,8 +9,8 @@ import java.util.stream.Collectors;
 
 public class LocationController {
     private final LocationMapper locationMapper = new LocationMapper();
-    private final LocationRepositoryImpl locationRepositoryImpl = new LocationRepositoryImpl();
-    private final LocationService locationService = new LocationService(locationRepositoryImpl);
+    private final LocationRepository locationRepository = new LocationRepositoryImpl();
+    private final LocationService locationService = new LocationService(locationRepository);
     private final ObjectMapper objectMapper = new ObjectMapper();
     Location location;
 

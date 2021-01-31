@@ -1,6 +1,7 @@
 package com.sda.weatherservice.frontend;
 
 import com.sda.weatherservice.backend.LocationController;
+import com.sda.weatherservice.backend.WeatherDataController;
 
 import java.util.Scanner;
 
@@ -8,6 +9,7 @@ public class UserInterface {
 
     private Scanner scanner = new Scanner(System.in);
     private LocationController locationController = new LocationController();
+    private WeatherDataController weatherController = new WeatherDataController();
 
     public void showWelcomeMessage() {
         while (true) {
@@ -64,16 +66,20 @@ public class UserInterface {
 
     private void showAddedLocations() {
         System.out.println("Wczytywanie dodanych lokacji");
-        //todo implementation
         String locations = locationController.getLocations();
         locations = locations
-                .replaceAll("\\{","\n\\{")
-                .replaceAll("}]","}\n]");
-        System.out.println("Zapisane lokacje: "+locations);
+                .replaceAll("\\{", "\n\\{")
+                .replaceAll("}]", "}\n]");
+        System.out.println("Zapisane lokacje: " + locations);
     }
 
     private void downloadWeatherData() {
         System.out.println("Pobieranie danych pogodowych");
-        //todo implementation
+        String locNames = locationController.getLocations();
+        String weatherDatas = weatherController.getWeatherDatas();
+        weatherDatas = weatherDatas
+                .replaceAll("\\{", "\n\\{")
+                .replaceAll("}]", "}\n]");
+        System.out.println("Dane pogodowe: " + weatherDatas);
     }
 }

@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-
+//todo delete before merge to develop after finishing feature
 public class WeatherDataDownander {
     static ObjectMapper mapper = new ObjectMapper();
 

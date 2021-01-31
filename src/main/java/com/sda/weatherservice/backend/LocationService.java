@@ -42,4 +42,5 @@ public class LocationService {
     public List<Location> getLocations() {
         return repo.findAllLocations();
     }
+
 }
