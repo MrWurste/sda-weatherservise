@@ -9,7 +9,7 @@ public class LocationService {
         this.repo = repository;
     }
 
-    public Location addNewLocation(String name, String latitude, String longitude, String country, String region) throws IllegalArgumentException{
+    public Location addNewLocation(String name, String country, String latitude, String longitude, String region) throws IllegalArgumentException{
         float flatitude = 0f;
         float flongitude = 0f;
 

@@ -14,21 +14,21 @@ public class LocationController {
     private final ObjectMapper objectMapper = new ObjectMapper();
     Location location;
 
-    public String addNewLocation(String name, String latitude, String longitude, String country, String region) {
+    public String addNewLocation(String name, String country, String latitude, String longitude, String region) {
         try {
             name = name.toLowerCase();
             country = country.toLowerCase();
             region = Optional.ofNullable(region).map(String::toLowerCase).orElse(null);
-            location = locationService.addNewLocation(name, latitude, longitude, country, region);
+            location = locationService.addNewLocation(name, country, latitude, longitude, region);
         } catch (IllegalArgumentException e) {
             return "Błąd dodawnia lokacji :" + e.getMessage();
         }
 
-        return String.format("Lokacja dodana prawidłowo: [nazwa: %s, szerokość: %s, długość: %s, kraj: %s, region: %s",
+        return String.format("Lokacja dodana prawidłowo: [nazwa: %s, kraj: %s, szerokość: %s, długość: %s, region: %s",
                 location.getName(),
+                location.getCountry(),
                 location.getLatitude(),
                 location.getLongitude(),
-                location.getCountry(),
                 location.getRegion());
     }
 
@@ -42,5 +42,9 @@ public class LocationController {
         } catch (JsonProcessingException e) {
             return "Wystąpił problem z serializacją odpowiedzi: " + e.getMessage();
         }
+    }
+
+    public boolean checkIfLocationIsInDataBase(String name) {
+        return locationService.repo.checkIfExist(name);
     }
 }

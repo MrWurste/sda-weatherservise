@@ -17,4 +17,9 @@ public class LocationRepositoryMock implements LocationRepository{
         return Collections.unmodifiableList(locations);
     }
 
+    @Override
+    public boolean checkIfExist(String name) {
+        return false;
+    }
+
 }

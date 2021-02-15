@@ -16,8 +16,8 @@ public class WeatherDataController {
     private final WeatherDataRepository weatherDataRepository = new WeatherDataRepositoryImpl();
     private final WeatherDataServise weatherDataServise = new WeatherDataServise(weatherDataRepository);
 
-    public String getWeatherDatas() {
-        weatherDataServise.manageGettingJSONAndSavingDataToDatabase();
+    public String getWeatherDatas(String wantedLocation) {
+        weatherDataServise.manageGettingJSONAndSavingDataToDatabase(wantedLocation);
         List<WeatherDataDTO> weatherDataDTOS = weatherDataServise.getWeatherData().stream()
                 .map(weatherDataMapper::asWeatherDataDTO)
                 .collect(Collectors.toList());

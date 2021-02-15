@@ -34,4 +34,17 @@ public class LocationRepositoryImpl implements LocationRepository {
         session.close();
         return locations;
     }
+
+    @Override
+    public boolean checkIfExist(String name) {
+        SessionFactory sessionFactory = HibernateUtils.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+
+        List<String> l = session.createQuery("SELECT name FROM Location WHERE name='" + name+"'").getResultList();
+        boolean b = l.get(0).equals(name);
+        transaction.commit();
+        session.close();
+        return b;
+    }
 }

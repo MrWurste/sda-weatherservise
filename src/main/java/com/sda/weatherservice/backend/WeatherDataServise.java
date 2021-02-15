@@ -21,7 +21,8 @@ public class WeatherDataServise {
         this.repo = repository;
     }
 
-    public void manageGettingJSONAndSavingDataToDatabase() {
+    public void manageGettingJSONAndSavingDataToDatabase(String wantedLocationName) {
+        createWeatherDataForOneLocation(wantedLocationName);
         createWeatherDataForEveryLocation(getAllLocationsNames());
         saveAllWeatherData(weatherDatas);
         weatherDatas.clear();
@@ -29,6 +30,10 @@ public class WeatherDataServise {
 
     public List<String> getAllLocationsNames() {
         return repo.findAllLocationsNames();
+    }
+
+    public void createWeatherDataForOneLocation (String wantedLocationName) {
+
     }
 
     public void createWeatherDataForEveryLocation (List<String> gALFN) {
